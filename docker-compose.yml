@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  project-db-pg:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "pwd123"
+      POSTGRES_DB: "project"
+    ports:
+      - "5433:5432"
+    volumes:
+      - /home/mal/project/docker-compose/PostgreSQL:/var/lib/postgresql/data
+      - ./script.sql:/docker-entrypoint-initdb.d/init_script.sql  # Montar o script SQL no contêiner
+    networks:
+      - project-network
+      
+  project-db-pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "contato@project.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "pwd123"
+    ports:
+      - "5050:80"
+    depends_on:
+      - project-db-pg
+    networks:
+      - project-network
+
+networks: 
+  project-network:
+    driver: bridge

@@ -1,0 +1,14 @@
+# Use a imagem oficial do PostgreSQL a partir do Docker Hub
+FROM postgres:latest
+
+# Variáveis de ambiente para configurar o PostgreSQL
+ENV POSTGRES_DB='mydatabase'
+ENV POSTGRES_USER='myuser'
+ENV POSTGRES_PASSWORD='mypassword'
+ENV POSTGRES_PORT='5432'
+
+# Exponha a porta do PostgreSQL (por padrão, é 5432)
+EXPOSE $POSTGRES_PORT
+
+# Copie o script SQL para inicializar o banco de dados
+COPY init.sql /docker-entrypoint-initdb.d/
