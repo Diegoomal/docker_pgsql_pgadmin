@@ -1,10 +1,16 @@
 # Docker-PgSQL-PgAdmin
 
+<!-- 
 ## Construir a imagem
 docker build -t img-app-pgsql .
 
 ## Executar o contêiner
-docker run -d -p 5432:5432 --name container-img-app-pgsql img-app-pgsql
+docker run -d -p 5432:5432 --name container-img-app-pgsql img-app-pgsql 
+-->
+
+## Executar o docker-compose
+
+docker-compose up
 
 ## Acessar o PgAdmin
 
@@ -27,6 +33,10 @@ dashboard -> add new server ->
         kerberos auth:      false
         password:           pwd123
         save_password:      true
+
+    3) Acess DB:
+        sidebar -> project-db -> Schemas -> Public -> Tables
+
 
 
 
